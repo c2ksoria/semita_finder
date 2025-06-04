@@ -1,0 +1,35 @@
+# ---- General ----
+.vscode/
+.DS_Store
+*.log
+.env
+
+# ---- Python / Django ----
+backend/__pycache__/
+backend/core/__pycache__/
+backend/semitafinder/__pycache__/
+backend/db.sqlite3
+backend/.env
+backend/media/
+backend/staticfiles/
+backend/*.pyc
+backend/*.pyo
+backend/core/migrations/
+backend/core/serializers/__pycache__/
+backend/core/urls/__pycache__/
+backend/core/views/__pycache__/
+
+# Poetry
+backend/poetry.lock
+
+# ---- Node / Vue ----
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.vitepress
+frontend/.DS_Store
+
+# ---- Docker / CI (si usás) ----
+*.pid
+*.sock
+docker-compose.override.yml
