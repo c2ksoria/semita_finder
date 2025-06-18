@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
 
-from core.models import Comercio
-from core.serializers.comercio import ComercioSerializer
+from core.models import Comercio, ComercioImagen, FranjaHorario
+from core.serializers.comercio import ComercioSerializer, ComercioImagenSerializer, ComercioDetallePublicoSerializer, FranjaHorariaSerializer
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -14,6 +14,8 @@ from rest_framework.generics import UpdateAPIView
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
+
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class ComercioListaAPIView(APIView):
@@ -106,6 +108,11 @@ class ComercioCercanoAPIView(APIView):
 class MisComerciosAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
+    # def get(self, request):
+    #     comercios = Comercio.objects.filter(usuario=request.user)
+    #     serializer = ComercioSerializer(comercios, many=True)
+    #     return Response(serializer.data)
+
     @swagger_auto_schema(
         operation_description="Listar los comercios registrados por el usuario autenticado."
     )
@@ -113,7 +120,7 @@ class MisComerciosAPIView(APIView):
         comercios = Comercio.objects.filter(usuario=request.user)
         serializer = ComercioSerializer(comercios, many=True)
         return Response(serializer.data)
-
+    
     @swagger_auto_schema(
         request_body=ComercioSerializer,
         operation_description="Crear un nuevo comercio vinculado al usuario autenticado."
@@ -125,23 +132,180 @@ class MisComerciosAPIView(APIView):
             return Response(ComercioSerializer(comercio).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-
-
-
 class MisComercioDetalleAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
+        operation_description="Listar los comercios registrados por el usuario autenticado."
+    )
+    def get(self, request, pk=None):
+        if pk:
+            try:
+                comercio = Comercio.objects.get(pk=pk, usuario=request.user)
+                serializer = ComercioSerializer(comercio)
+                return Response(serializer.data)
+            except Comercio.DoesNotExist:
+                return Response({'error': 'Comercio no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            comercios = Comercio.objects.filter(usuario=request.user)
+            serializer = ComercioSerializer(comercios, many=True)
+            return Response(serializer.data)
+    
+    @swagger_auto_schema(
         request_body=ComercioSerializer,
         operation_description="Editar parcialmente un comercio propio (PATCH)",
     )
-    def patch(self, request, comercio_id):
+    def patch(self, request, pk):
+        try:
+            comercio = Comercio.objects.get(pk=pk, usuario=request.user)
+        except Comercio.DoesNotExist:
+            return Response({'error': 'Comercio no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+    
+        serializer = ComercioSerializer(comercio, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    def delete(self, request, comercio_id):
+        comercio = get_object_or_404(Comercio, pk=comercio_id)
+
+        if comercio.usuario != request.user:
+            raise PermissionDenied("No tenés permiso para eliminar este comercio.")
+
+        comercio.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ComercioImagenUploadAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    @swagger_auto_schema(
+        operation_description="Subir una imagen para un comercio propio.",
+        request_body=ComercioImagenSerializer,
+        responses={201: ComercioImagenSerializer}
+    )
+    def post(self, request, comercio_id):
         comercio = get_object_or_404(Comercio, pk=comercio_id)
 
         if comercio.usuario != request.user:
             raise PermissionDenied("No tenés permiso para modificar este comercio.")
 
-        serializer = ComercioSerializer(comercio, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer = ComercioImagenSerializer(data=request.data, context={'comercio': comercio})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ComercioImagenListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="Listar imágenes de un comercio propio.",
+        responses={200: ComercioImagenSerializer(many=True)}
+    )
+    def get(self, request, comercio_id):
+        comercio = get_object_or_404(Comercio, pk=comercio_id)
+
+        if comercio.usuario != request.user:
+            raise PermissionDenied("No tenés permiso para acceder a este comercio.")
+
+        imagenes = comercio.imagenes.all()
+        serializer = ComercioImagenSerializer(imagenes, many=True)
         return Response(serializer.data)
+    
+class ComercioImagenDeleteAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    @swagger_auto_schema(
+        operation_description="Eliminar una imagen de un comercio propio.",
+        responses={204: 'Imagen eliminada correctamente'}
+    )
+    def delete(self, request, comercio_id, imagen_id):
+        comercio = get_object_or_404(Comercio, pk=comercio_id)
+
+        if comercio.usuario != request.user:
+            raise PermissionDenied("No tenés permiso para acceder a este comercio.")
+
+        imagen = get_object_or_404(ComercioImagen, pk=imagen_id, comercio=comercio)
+        imagen.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class ComercioDetallePublicoAPIView(APIView):
+    def get(self, request, comercio_id):
+        try:
+            comercio = Comercio.objects.get(id=comercio_id, activo=True)
+        except Comercio.DoesNotExist:
+            return Response({"detail": "Comercio no encontrado o inactivo"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = ComercioDetallePublicoSerializer(comercio)
+        return Response(serializer.data)
+
+class HorariosComerciosAPIView(APIView):
+    @swagger_auto_schema(
+        operation_description="Obtener Horario de un comercio por id.",
+    )
+    def get(self, request, comercio_id):
+        try:
+            comercio = Comercio.objects.get(id=comercio_id)
+        except Comercio.DoesNotExist:
+            return Response({'detail': 'Comercio no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+        franjas = FranjaHorario.objects.filter(comercio=comercio).order_by('dia', 'apertura')
+        serializer = FranjaHorariaSerializer(franjas, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FranjaHorarioAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    @swagger_auto_schema(
+        operation_description="Obtener Horarios de un comercio por id con permisos.",
+    )
+    def get(self, request, comercio_id):
+        try:
+            comercio = Comercio.objects.get(id=comercio_id, usuario=request.user)
+        except Comercio.DoesNotExist:
+            return Response({'detail': 'No autorizado'}, status=403)
+
+        franjas = FranjaHorario.objects.filter(comercio=comercio)
+        serializer = FranjaHorariaSerializer(franjas, many=True)
+        return Response(serializer.data)
+    @swagger_auto_schema(
+        operation_description="Guardar Horarios de un comercio por id con permisos.",
+                request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT
+        ),
+    )
+    def post(self, request, comercio_id):
+        try:
+            comercio = Comercio.objects.get(id=comercio_id, usuario=request.user)
+        except Comercio.DoesNotExist:
+            return Response({'detail': 'No autorizado'}, status=403)
+
+        # Reemplaza todas las franjas horarias actuales
+        FranjaHorario.objects.filter(comercio=comercio).delete()
+
+        serializer = FranjaHorariaSerializer(data=request.data, many=True)
+        if serializer.is_valid():
+            for franja in serializer.validated_data:
+                FranjaHorario.objects.create(comercio=comercio, **franja)
+            return Response({'detail': 'Horarios actualizados correctamente'})
+        return Response(serializer.errors, status=400)
+
+    @swagger_auto_schema(
+        operation_description="Eliminar Horarios de un comercio por id con permisos.",
+                request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT
+        ),
+    )
+    def delete(self, request, comercio_id):
+        franja_id = request.data.get('franja_id')
+        if not franja_id:
+            return Response({'detail': 'Se requiere franja_id'}, status=400)
+
+        try:
+            franja = FranjaHorario.objects.get(id=franja_id, comercio__usuario=request.user)
+            franja.delete()
+            return Response({'detail': 'Franja eliminada'})
+        except FranjaHorario.DoesNotExist:
+            return Response({'detail': 'Franja no encontrada o no autorizada'}, status=404)
