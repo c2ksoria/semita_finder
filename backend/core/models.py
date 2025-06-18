@@ -188,7 +188,7 @@ class MovimientoPedido(models.Model):
     def __str__(self):
         return f"Estado: {self.estado} – Pedido #{self.pedido.id} – {self.fecha_moviminto.strftime('%Y-%m-%d %H:%M')}"
 
-# Images relative to each Commerce
+# Images relative to each
 class ComercioImagen(models.Model):
     comercio = models.ForeignKey(
         Comercio, on_delete=models.CASCADE, related_name='imagenes'
