@@ -18,12 +18,15 @@ backend/core/migrations/
 backend/core/serializers/__pycache__/
 backend/core/urls/__pycache__/
 backend/core/views/__pycache__/
+backend/core/utils/__pycache__/
+backend/imagesSemitas
 
 # Poetry
 backend/poetry.lock
 
 # ---- Node / Vue ----
-frontend/node_modules/
+frontend/semita-finder-frontend/.vscode/
+frontend/semita-finder-frontend/node_modules/
 frontend/dist/
 frontend/.env
 frontend/.vitepress
