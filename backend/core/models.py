@@ -1,7 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
+from .utils.constants import ESTADOS_PEDIDO
 
+# Main User Class
 class Usuario(AbstractUser):
     def es_cliente(self):
         return self.pedidos.exists()
@@ -12,6 +14,7 @@ class Usuario(AbstractUser):
     def __str__(self):
         return f"{self.username}"
 
+# Define a commercial building
 class Comercio(models.Model):
     usuario = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -21,12 +24,13 @@ class Comercio(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True, null=True)
     direccion = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=20)
     latitud = models.DecimalField(max_digits=9, decimal_places=7)
     longitud = models.DecimalField(max_digits=9, decimal_places=7)
     
     stock_semitas = models.PositiveIntegerField(default=0)
 
-    # Año y mes de inicio de actividad
+    # Month and Year of beginning activity
     anio_inicio = models.PositiveIntegerField()
     mes_inicio = models.PositiveSmallIntegerField(choices=[
         (1, 'Enero'), (2, 'Febrero'), (3, 'Marzo'), (4, 'Abril'),
@@ -34,7 +38,7 @@ class Comercio(models.Model):
         (9, 'Septiembre'), (10, 'Octubre'), (11, 'Noviembre'), (12, 'Diciembre')
     ])
 
-    # Estado
+    # Active or non active state
     activo = models.BooleanField(default=True)
 
     # Timestamps
@@ -44,6 +48,7 @@ class Comercio(models.Model):
     def __str__(self):
         return f"{self.nombre} ({self.usuario.username})"
 
+# Model used to save opening ranges of commercial business
 class FranjaHorario(models.Model):
     DIA_CHOICES = [
         (0, 'Lunes'),
@@ -58,7 +63,7 @@ class FranjaHorario(models.Model):
     comercio = models.ForeignKey(
         'Comercio',
         on_delete=models.CASCADE,
-        related_name='franjas_horarias'
+        related_name='horarios'
     )
     dia = models.IntegerField(choices=DIA_CHOICES)
     apertura = models.TimeField()
@@ -69,13 +74,15 @@ class FranjaHorario(models.Model):
 
     def __str__(self):
         return f"{self.get_dia_display()} {self.apertura.strftime('%H:%M')}–{self.cierre.strftime('%H:%M')}"
-    
+
+# Used to save differents type of semitas
 class TipoSemita(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.nombre
 
+# Model used to save differents products relative to each commerce
 class Producto(models.Model):
     comercio = models.ForeignKey(
         'Comercio',
@@ -97,7 +104,8 @@ class Producto(models.Model):
 
     def __str__(self):
         return f"{self.nombre} – {self.tipo.nombre} - {self.comercio.nombre}"
-    
+
+# You can save images relatives to one product
 class SemitaImagen(models.Model):
     producto = models.ForeignKey(
         'Producto',
@@ -109,14 +117,9 @@ class SemitaImagen(models.Model):
 
     def __str__(self):
         return f"Imagen de {self.producto.nombre}"
-    
+
+# Products order model
 class Pedido(models.Model):
-    ESTADO_CHOICES = [
-        ('pendiente', 'Pendiente'),
-        ('confirmado', 'Confirmado'),
-        ('cancelado', 'Cancelado'),
-        ('entregado', 'Entregado'),
-    ]
 
     cliente = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -130,7 +133,7 @@ class Pedido(models.Model):
     )
     fecha_hora_retiro = models.DateTimeField()
     comentario = models.TextField(blank=True, null=True)
-    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='pendiente')
+    estado = models.CharField(max_length=20, choices=ESTADOS_PEDIDO, default='pendiente')
     creado_en = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -138,7 +141,8 @@ class Pedido(models.Model):
 
     def calcular_total(self):
         return sum(item.subtotal() for item in self.items.all())
-    
+
+# Items of products relative to each product order
 class ItemPedido(models.Model):
     pedido = models.ForeignKey(
         'Pedido',
@@ -159,7 +163,11 @@ class ItemPedido(models.Model):
 
     def __str__(self):
         return f"{self.cantidad} x {self.producto.nombre} – Pedido #{self.pedido.id}"
+    
+    def subtotal(self):
+        return self.precio_item or 0  # por seguridad
 
+# Regiter earch movement of each order
 class MovimientoPedido(models.Model):
     pedido = models.ForeignKey(
         'Pedido',
@@ -173,9 +181,20 @@ class MovimientoPedido(models.Model):
         blank=True,
         related_name='cambios_pedido'
     )
-    estado = models.CharField(max_length=20, choices=Pedido.ESTADO_CHOICES)
+    estado = models.CharField(max_length=20, choices=ESTADOS_PEDIDO)
     comentario = models.TextField(blank=True, null=True)
     fecha_moviminto = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Estado: {self.estado} – Pedido #{self.pedido.id} – {self.fecha_moviminto.strftime('%Y-%m-%d %H:%M')}"
+
+# Images relative to each Commerce
+class ComercioImagen(models.Model):
+    comercio = models.ForeignKey(
+        Comercio, on_delete=models.CASCADE, related_name='imagenes'
+    )
+    imagen = models.ImageField(upload_to='comercios/')
+    principal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Imagen de {self.comercio.nombre} - Principal: {self.principal}"
