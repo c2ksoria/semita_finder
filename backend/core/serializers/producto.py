@@ -11,10 +11,30 @@ class SemitaImagenSerializer(serializers.ModelSerializer):
         model = SemitaImagen
         fields = ['id', 'imagen', 'principal']
 
+    def create(self, validated_data):
+        producto = self.context['producto']
+
+        validated_data['producto'] = producto
+        
+        # Si no vino "principal" o es False, pero no hay ninguna imagen previa
+        if not validated_data.get('principal', False):
+            if not producto.imagenes.exists():
+                validated_data['principal'] = True
+        
+        if validated_data.get('principal', False):
+            producto.imagenes.update(principal=False)
+
+        return super().create(validated_data)
+    
 class ProductoSerializer(serializers.ModelSerializer):
     imagenes = SemitaImagenSerializer(many=True, read_only=True)
     tipo = TipoSemitaSerializer(read_only=True)
-
+    tipo_id = serializers.PrimaryKeyRelatedField(
+        queryset=TipoSemita.objects.all(),
+        source='tipo',
+        write_only=True
+    )
     class Meta:
         model = Producto
-        fields = ['id', 'nombre', 'tipo', 'precio', 'en_stock', 'activo', 'imagenes']
+        fields = "__all__"
+
