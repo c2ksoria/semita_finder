@@ -27,6 +27,7 @@ backend/poetry.lock
 
 # ---- Node / Vue ----
 frontend/semita-finder-frontend/.vscode/
+frontend/semita-finder-frontend/.vite/
 frontend/semita-finder-frontend/node_modules/
 frontend/dist/
 frontend/.env

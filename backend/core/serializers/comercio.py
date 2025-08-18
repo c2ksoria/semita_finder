@@ -8,7 +8,6 @@ class FranjaHorarioSerializer(serializers.ModelSerializer):
         model = FranjaHorario
         fields = ['id', 'dia', 'apertura', 'cierre']
 
-
 class ComercioImagenSerializer(serializers.ModelSerializer):
     class Meta:
         model = ComercioImagen
@@ -44,7 +43,6 @@ class ComercioDetalleSerializer(serializers.ModelSerializer):
         model = Comercio
         fields = '__all__'
 
-
 class SemitaImagenSerializer(serializers.ModelSerializer):
     class Meta:
         model = SemitaImagen
@@ -68,7 +66,6 @@ class FranjaHorariaSerializer(serializers.ModelSerializer):
     class Meta:
         model = FranjaHorario
         fields = ['id','dia','apertura', 'cierre']
-
 
 class ComercioDetallePublicoSerializer(serializers.ModelSerializer):
     productos = ProductoPublicoSerializer(many=True, read_only=True,)
