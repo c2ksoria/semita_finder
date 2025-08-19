@@ -129,7 +129,7 @@ At this stage, the system is not intended for other types of products. Its core 
 * Database: PostgreSQL
 * API Documentation: Swagger (drf-yasg)
 * Authentication: JWT
-* Deployment: Docker (planned)
+* Deployment: Complete Docker solution
 
 ## 📡 API Highlights
 
