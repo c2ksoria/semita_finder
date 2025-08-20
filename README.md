@@ -62,6 +62,20 @@ At this stage, the system is not intended for other types of products. Its core 
         - Closed
         - Opening soon (calculated dynamically from current system time vs. schedule).
 
+## 🛒 Ordering Flow
+
+* Each commerce listed in the search results table (alongside the map) includes a "Buy" button.
+
+* Clicking this button takes the user to the order creation screen, where they can:
+
+    * Choose a date and time for pickup.
+
+    * Browse all available products from that commerce.
+
+    * Select desired quantities for each product.
+
+* The system validates that orders cannot be created with zero quantities.
+
 ## 🛒 Orders – Client Perspective
 
 * Clients can:
@@ -99,6 +113,15 @@ At this stage, the system is not intended for other types of products. Its core 
 
     * Once an order is marked ***Delivered***, it becomes ***read-only*** (no further edits).
 
+## 🏪 Commerce Details
+
+* Users can also access a Commerce Detail Page, which displays:
+
+    * The name, description, and address of the shop.
+    * The opening hours, including multiple time ranges per day.
+    * Uploaded photos of the commerce.
+    * A full list of products offered by the commerce, with photos when available.
+
 ## 🛠️ Tech Stack
 
 * Backend: Django + Django REST Framework
@@ -106,7 +129,7 @@ At this stage, the system is not intended for other types of products. Its core 
 * Database: PostgreSQL
 * API Documentation: Swagger (drf-yasg)
 * Authentication: JWT
-* Deployment: Docker (planned)
+* Deployment: Complete Docker solution
 
 ## 📡 API Highlights
 
