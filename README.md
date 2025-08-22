@@ -168,6 +168,73 @@ At this stage, the system is not intended for other types of products. Its core 
 
 * 🌍 Multi-language documentation (README + Wiki in EN/ES).
 
+## Project Setup & Usage
+
+* Initialization
+Clone the repository:
+```
+git clone https://github.com/c2ksoria/semita_finder.git
+cd semita_finder
+```
+* Before to start
+Create .env file and fill all this enviroment variables:
+ ```
+# Django Enviroment
+DJANGO_SUPERUSER_USERNAME=
+DJANGO_SUPERUSER_PASSWORD=
+DJANGO_SUPERUSER_EMAIL=
+DEBUG=True
+SECRET_KEY=super-secret-key
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+# PostgreSQL DB
+POSTGRES_DB=semitas
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=pass
+POSTGRES_HOST=db
+POSTGRES_PORT_EXTERNAL=5433 #it fixed to external access into docker image db
+POSTGRES_PORT_INTERNAL=5432 #internal port
+ ```
+
+* Start the application using Docker Compose:
+```
+docker-compose up -d --build
+```
+
+* To run containers in the background:
+```
+docker-compose up -d
+```
+
+## Logs:
+
+* To see logs for all services:
+```
+docker-compose logs -f
+```
+
+* To see logs for a specific service (e.g., frontend):
+```
+docker-compose logs -f frontend
+```   
+
+## Ports Overview
+
+```
+Service	    Port   Host → Container
+Frontend	3000 → 3000	Vite app
+Backend	    8000 → 8000	Django API
+Database	5432 → 5432	PostgreSQL
+```
+👉 After running the services, you should be able to access:
+
+[Frontend](http://localhost:3000)
+
+[Backend](http://localhost:8000)
+
+Postgres: localhost:5432
+
+
+
 ## 📖 Credits
 
 Developed by Carlos Valdemar Soria with guidance from GPT-5 (OpenAI).
