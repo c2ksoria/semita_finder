@@ -179,10 +179,6 @@ cd semita_finder
 * Before to start
 Create .env file and fill all this enviroment variables:
  ```
-# Django Enviroment
-DJANGO_SUPERUSER_USERNAME=
-DJANGO_SUPERUSER_PASSWORD=
-DJANGO_SUPERUSER_EMAIL=
 DEBUG=True
 SECRET_KEY=super-secret-key
 DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
@@ -231,8 +227,32 @@ Database	5432 → 5432	PostgreSQL
 
 [Backend](http://localhost:8000)
 
+[Admin Django](http://localhost:8000/admin)
+
 Postgres: localhost:5432
 
+## Demo Credentials
+
+The application comes with a preloaded database fixture (`demo_data.json`) that includes a superuser and some demo users. It file is located in: ***backend/core/fixture***. Pero no necesitas hacer nada, porque realicé una automatización en el despliegue del contenedor backend. You only need to start the application like it's explained before.
+
+### Superuser
+
+- **Username**: valdemar
+- **Email**: carlosvsoria1982@gmail.com
+- **Password**: 123456
+
+### Demo Users
+- **User 1**
+  - Username: User1
+  - Password: +$@>pp6_&PFfCZy
+
+- **User 2**
+  - Username: User2
+  - Password: +$@>pp6_&PFfCZy
+
+- **User 3**
+  - Username: User3
+  - Password: +$@>pp6_&PFfCZy
 
 
 ## 📖 Credits
