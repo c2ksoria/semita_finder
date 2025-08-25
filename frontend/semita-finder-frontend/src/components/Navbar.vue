@@ -13,7 +13,7 @@
         <RouterLink to="/login">Login</RouterLink>
       </li>
       <li v-else>
-        <button @click="logout">Cerrar sesión ({{ username }})</button>
+        <button @click="logout">Cerrar sesión ({{ user }})</button>
       </li>
     </ul>
   </nav>
@@ -22,19 +22,15 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { useAuthStore } from '../store/auth' // si usás Pinia
+const auth = useAuthStore()
 const router = useRouter()
-
-// Token y nombre desde localStorage (más adelante podemos usar Pinia)
-const isAuthenticated = computed(() => !!localStorage.getItem('token'))
-// console.log(isAuthenticated)
-const username = localStorage.getItem('username') || 'Usuario'
+const isAuthenticated = computed(() => !!auth.token)
+const user = computed(() => auth.user?.username || '')
 
 const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('username')
+  auth.logout()
   router.push('/login')
-  window.location.reload()  // ⚠️ fuerza recarga y refresca estado
 }
 </script>
 

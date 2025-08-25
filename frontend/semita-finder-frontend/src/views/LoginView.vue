@@ -24,12 +24,13 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '../services/api'
-
+import { useAuthStore } from '../store/auth'
 const router = useRouter()
 
 const username = ref('')
 const password = ref('')
 const error = ref(null)
+const auth = useAuthStore()
 
 const login = async () => {
   error.value = null
@@ -38,8 +39,10 @@ const login = async () => {
       username: username.value,
       password: password.value,
     })
-
-    localStorage.setItem('token', response.data.token)
+    
+    const token = response.data.token
+    const user = { username: username.value }
+    auth.login(token, user)
 
     // Obtener nombre del usuario
     const me = await api.get('/auth/me/')

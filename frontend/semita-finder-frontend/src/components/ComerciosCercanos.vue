@@ -46,13 +46,11 @@ const seleccionar = (comercio) => {
 }
 
 const comprar = (comercio) => {
-  console.log("comprar.....")
    if (!auth.token) {
     alert('Necesitás iniciar sesión para realizar un pedido')
     router.push('/login')
     return
   }
-
   router.push(`/pedido/nuevo/${comercio.id}`)
 }
 
