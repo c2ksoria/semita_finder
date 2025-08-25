@@ -1,0 +1,951 @@
+[
+{
+  "model": "core.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$lFlc9DR0l3Je74Lk8imLa8$xEpZGbdoT9PRL1oDRZeH2qNDebwY1V9Qw+Romaq+NVY=",
+    "last_login": "2025-08-22T10:58:13.604Z",
+    "is_superuser": true,
+    "username": "valdemar",
+    "first_name": "User",
+    "last_name": "Lorem",
+    "email": "carlosvsoria1982@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-08-22T10:50:07.823Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.usuario",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$pxGHvWcwJ2E7P5Gd6yP6uX$T8VyhkldenCI2Ja+MOrf5hswNFBS51VF5sHYq2wdsL0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "User1",
+    "first_name": "User",
+    "last_name": "Lorem",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-22T11:00:45Z",
+    "groups": [],
+    "user_permissions": [
+      1,
+      2,
+      3,
+      4,
+      9,
+      10,
+      11,
+      12,
+      5,
+      6,
+      7,
+      8,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      13,
+      14,
+      15,
+      16,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      61,
+      62,
+      63,
+      64,
+      53,
+      54,
+      55,
+      56,
+      49,
+      50,
+      51,
+      52,
+      57,
+      58,
+      59,
+      60,
+      65,
+      66,
+      67,
+      68,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      17,
+      18,
+      19,
+      20
+    ]
+  }
+},
+{
+  "model": "core.usuario",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$am5wzeeD7dG9OQhauCCu8d$v3oRyf+Jdn7fKwzi/AYh+RJmqg2AANXZrgrQgJ4ZhbU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "User2",
+    "first_name": "User",
+    "last_name": "Lorem",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-22T11:14:35Z",
+    "groups": [],
+    "user_permissions": [
+      1,
+      2,
+      3,
+      4,
+      9,
+      10,
+      11,
+      12,
+      5,
+      6,
+      7,
+      8,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      13,
+      14,
+      15,
+      16,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      61,
+      62,
+      63,
+      64,
+      53,
+      54,
+      55,
+      56,
+      49,
+      50,
+      51,
+      52,
+      57,
+      58,
+      59,
+      60,
+      65,
+      66,
+      67,
+      68,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      17,
+      18,
+      19,
+      20
+    ]
+  }
+},
+{
+  "model": "core.usuario",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$w3qMEmxaqjMTe0SQjKfWhh$7FeTruRoa3W0vJElssYlgg+6qjE+i4AcLVhvEz2ySmA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "User3",
+    "first_name": "User",
+    "last_name": "Lorem",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-08-22T11:19:25.108Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.comercio",
+  "pk": 1,
+  "fields": {
+    "usuario": 2,
+    "nombre": "Panaderia San Juan",
+    "descripcion": "La mejor panadería",
+    "direccion": "Av Libertador 1100 oeste",
+    "telefono": "123456789",
+    "latitud": "-31.5311904",
+    "longitud": "-68.5436769",
+    "stock_semitas": 0,
+    "anio_inicio": 2025,
+    "mes_inicio": 1,
+    "activo": true,
+    "creado_en": "2025-08-22T11:08:42.399Z",
+    "actualizado_en": "2025-08-22T11:08:42.399Z"
+  }
+},
+{
+  "model": "core.comercio",
+  "pk": 2,
+  "fields": {
+    "usuario": 3,
+    "nombre": "Panadería Ischigualasto",
+    "descripcion": "Emprendimiento Familiar",
+    "direccion": "Av. Ignacio de la Rosa 1100 oeste",
+    "telefono": "12345678",
+    "latitud": "-31.5375564",
+    "longitud": "-68.5440729",
+    "stock_semitas": 0,
+    "anio_inicio": 2020,
+    "mes_inicio": 2,
+    "activo": true,
+    "creado_en": "2025-08-22T11:16:17.590Z",
+    "actualizado_en": "2025-08-22T11:16:17.590Z"
+  }
+},
+{
+  "model": "core.comercio",
+  "pk": 3,
+  "fields": {
+    "usuario": 4,
+    "nombre": "Panadería Exitosa",
+    "descripcion": "La Mejor",
+    "direccion": "Av. Ignacio de la Rosa y Circunvalación",
+    "telefono": "12312332",
+    "latitud": "-31.5384979",
+    "longitud": "-68.5553137",
+    "stock_semitas": 0,
+    "anio_inicio": 2000,
+    "mes_inicio": 11,
+    "activo": true,
+    "creado_en": "2025-08-22T11:20:25.692Z",
+    "actualizado_en": "2025-08-22T11:20:25.692Z"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 1,
+  "fields": {
+    "comercio": 1,
+    "dia": 0,
+    "apertura": "09:00:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 2,
+  "fields": {
+    "comercio": 1,
+    "dia": 0,
+    "apertura": "17:00:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 3,
+  "fields": {
+    "comercio": 1,
+    "dia": 1,
+    "apertura": "09:00:00",
+    "cierre": "01:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 4,
+  "fields": {
+    "comercio": 1,
+    "dia": 1,
+    "apertura": "17:00:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 5,
+  "fields": {
+    "comercio": 1,
+    "dia": 2,
+    "apertura": "09:00:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 6,
+  "fields": {
+    "comercio": 1,
+    "dia": 2,
+    "apertura": "17:00:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 7,
+  "fields": {
+    "comercio": 1,
+    "dia": 3,
+    "apertura": "09:00:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 8,
+  "fields": {
+    "comercio": 1,
+    "dia": 3,
+    "apertura": "05:00:00",
+    "cierre": "09:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 9,
+  "fields": {
+    "comercio": 1,
+    "dia": 4,
+    "apertura": "09:00:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 10,
+  "fields": {
+    "comercio": 1,
+    "dia": 4,
+    "apertura": "17:00:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 11,
+  "fields": {
+    "comercio": 1,
+    "dia": 5,
+    "apertura": "09:00:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 12,
+  "fields": {
+    "comercio": 2,
+    "dia": 0,
+    "apertura": "08:30:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 13,
+  "fields": {
+    "comercio": 2,
+    "dia": 0,
+    "apertura": "16:30:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 14,
+  "fields": {
+    "comercio": 2,
+    "dia": 1,
+    "apertura": "08:30:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 15,
+  "fields": {
+    "comercio": 2,
+    "dia": 1,
+    "apertura": "16:30:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 16,
+  "fields": {
+    "comercio": 2,
+    "dia": 2,
+    "apertura": "08:30:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 17,
+  "fields": {
+    "comercio": 2,
+    "dia": 2,
+    "apertura": "16:30:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 18,
+  "fields": {
+    "comercio": 2,
+    "dia": 3,
+    "apertura": "08:30:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 19,
+  "fields": {
+    "comercio": 2,
+    "dia": 3,
+    "apertura": "16:30:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 20,
+  "fields": {
+    "comercio": 2,
+    "dia": 4,
+    "apertura": "08:30:00",
+    "cierre": "13:00:00"
+  }
+},
+{
+  "model": "core.franjahorario",
+  "pk": 21,
+  "fields": {
+    "comercio": 2,
+    "dia": 4,
+    "apertura": "16:30:00",
+    "cierre": "21:00:00"
+  }
+},
+{
+  "model": "core.tiposemita",
+  "pk": 1,
+  "fields": {
+    "nombre": "Semita chica"
+  }
+},
+{
+  "model": "core.tiposemita",
+  "pk": 2,
+  "fields": {
+    "nombre": "Semita sin chicharrón Chica"
+  }
+},
+{
+  "model": "core.tiposemita",
+  "pk": 3,
+  "fields": {
+    "nombre": "Semitón"
+  }
+},
+{
+  "model": "core.producto",
+  "pk": 1,
+  "fields": {
+    "comercio": 1,
+    "tipo": 1,
+    "nombre": "Semita",
+    "precio": "250.00",
+    "en_stock": true,
+    "activo": true,
+    "creado_en": "2025-08-22T11:12:49.403Z",
+    "actualizado_en": "2025-08-22T11:12:49.403Z"
+  }
+},
+{
+  "model": "core.producto",
+  "pk": 2,
+  "fields": {
+    "comercio": 1,
+    "tipo": 1,
+    "nombre": "Semita por Docena",
+    "precio": "2400.00",
+    "en_stock": true,
+    "activo": true,
+    "creado_en": "2025-08-22T11:13:16.914Z",
+    "actualizado_en": "2025-08-22T11:13:16.914Z"
+  }
+},
+{
+  "model": "core.producto",
+  "pk": 3,
+  "fields": {
+    "comercio": 2,
+    "tipo": 3,
+    "nombre": "Semiton",
+    "precio": "1000.00",
+    "en_stock": true,
+    "activo": true,
+    "creado_en": "2025-08-22T11:17:45.144Z",
+    "actualizado_en": "2025-08-22T11:17:45.144Z"
+  }
+},
+{
+  "model": "core.producto",
+  "pk": 4,
+  "fields": {
+    "comercio": 3,
+    "tipo": 2,
+    "nombre": "Semita chica x 6 unidades",
+    "precio": "1100.00",
+    "en_stock": true,
+    "activo": true,
+    "creado_en": "2025-08-22T11:21:23.357Z",
+    "actualizado_en": "2025-08-22T11:21:23.357Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 1,
+  "fields": {
+    "cliente": 2,
+    "comercio": 2,
+    "fecha_hora_retiro": "2025-08-22T13:00:00Z",
+    "comentario": "calentitasss",
+    "estado": "entregado",
+    "creado_en": "2025-08-22T11:18:06.189Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 2,
+  "fields": {
+    "cliente": 2,
+    "comercio": 3,
+    "fecha_hora_retiro": "2025-08-22T16:00:00Z",
+    "comentario": "calentitas por favor",
+    "estado": "entregado",
+    "creado_en": "2025-08-22T11:21:50.777Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 3,
+  "fields": {
+    "cliente": 2,
+    "comercio": 3,
+    "fecha_hora_retiro": "2025-08-24T14:00:00Z",
+    "comentario": "asdsad",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T05:45:31.530Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 4,
+  "fields": {
+    "cliente": 3,
+    "comercio": 1,
+    "fecha_hora_retiro": "2025-08-25T15:12:00Z",
+    "comentario": "",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T21:20:40.459Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 5,
+  "fields": {
+    "cliente": 2,
+    "comercio": 1,
+    "fecha_hora_retiro": "2025-08-24T22:00:00Z",
+    "comentario": "tengo hambre!",
+    "estado": "entregado",
+    "creado_en": "2025-08-24T21:29:27.320Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 6,
+  "fields": {
+    "cliente": 2,
+    "comercio": 2,
+    "fecha_hora_retiro": "2025-08-25T14:00:00Z",
+    "comentario": ".",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T21:29:50.740Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 7,
+  "fields": {
+    "cliente": 2,
+    "comercio": 3,
+    "fecha_hora_retiro": "2025-08-25T14:00:00Z",
+    "comentario": "",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T21:30:09.430Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 8,
+  "fields": {
+    "cliente": 3,
+    "comercio": 2,
+    "fecha_hora_retiro": "2025-08-27T14:00:00Z",
+    "comentario": "",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T21:36:25.974Z"
+  }
+},
+{
+  "model": "core.pedido",
+  "pk": 9,
+  "fields": {
+    "cliente": 2,
+    "comercio": 1,
+    "fecha_hora_retiro": "2025-08-26T14:00:00Z",
+    "comentario": "",
+    "estado": "registrado",
+    "creado_en": "2025-08-24T21:49:19.187Z"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 1,
+  "fields": {
+    "pedido": 1,
+    "producto": 3,
+    "cantidad": 2,
+    "precio_item": "2000.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 2,
+  "fields": {
+    "pedido": 2,
+    "producto": 4,
+    "cantidad": 3,
+    "precio_item": "3300.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 3,
+  "fields": {
+    "pedido": 3,
+    "producto": 4,
+    "cantidad": 1,
+    "precio_item": "1100.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 4,
+  "fields": {
+    "pedido": 4,
+    "producto": 1,
+    "cantidad": 12,
+    "precio_item": "3000.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 5,
+  "fields": {
+    "pedido": 5,
+    "producto": 1,
+    "cantidad": 1,
+    "precio_item": "250.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 6,
+  "fields": {
+    "pedido": 6,
+    "producto": 3,
+    "cantidad": 1,
+    "precio_item": "1000.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 7,
+  "fields": {
+    "pedido": 7,
+    "producto": 4,
+    "cantidad": 2,
+    "precio_item": "2200.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 8,
+  "fields": {
+    "pedido": 8,
+    "producto": 3,
+    "cantidad": 1,
+    "precio_item": "1000.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 9,
+  "fields": {
+    "pedido": 9,
+    "producto": 1,
+    "cantidad": 1,
+    "precio_item": "250.00"
+  }
+},
+{
+  "model": "core.itempedido",
+  "pk": 10,
+  "fields": {
+    "pedido": 9,
+    "producto": 2,
+    "cantidad": 2,
+    "precio_item": "4800.00"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 1,
+  "fields": {
+    "pedido": 1,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-22T11:18:06.195Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 2,
+  "fields": {
+    "pedido": 2,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-22T11:21:50.781Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 3,
+  "fields": {
+    "pedido": 1,
+    "usuario": 3,
+    "estado": "aceptado",
+    "comentario": "Estamos trabajando en el pedido",
+    "fecha_moviminto": "2025-08-22T11:22:54.283Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 4,
+  "fields": {
+    "pedido": 1,
+    "usuario": 3,
+    "estado": "en_camino",
+    "comentario": "va el delivery",
+    "fecha_moviminto": "2025-08-22T11:23:14.371Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 5,
+  "fields": {
+    "pedido": 1,
+    "usuario": 3,
+    "estado": "entregado",
+    "comentario": "todo ok",
+    "fecha_moviminto": "2025-08-22T11:23:24.876Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 6,
+  "fields": {
+    "pedido": 2,
+    "usuario": 4,
+    "estado": "en_camino",
+    "comentario": "ya salió el delivery",
+    "fecha_moviminto": "2025-08-22T11:24:09.147Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 7,
+  "fields": {
+    "pedido": 2,
+    "usuario": 4,
+    "estado": "cancelado",
+    "comentario": "no se encontró el lugar",
+    "fecha_moviminto": "2025-08-22T11:24:24.213Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 8,
+  "fields": {
+    "pedido": 2,
+    "usuario": 4,
+    "estado": "entregado",
+    "comentario": "lo buscó por el negocio",
+    "fecha_moviminto": "2025-08-22T11:24:45.441Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 9,
+  "fields": {
+    "pedido": 3,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T05:45:31.543Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 10,
+  "fields": {
+    "pedido": 4,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:20:40.476Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 11,
+  "fields": {
+    "pedido": 5,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:29:27.328Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 12,
+  "fields": {
+    "pedido": 6,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:29:50.745Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 13,
+  "fields": {
+    "pedido": 7,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:30:09.436Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 14,
+  "fields": {
+    "pedido": 5,
+    "usuario": 2,
+    "estado": "preparando",
+    "comentario": "",
+    "fecha_moviminto": "2025-08-24T21:31:01.696Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 15,
+  "fields": {
+    "pedido": 5,
+    "usuario": 2,
+    "estado": "entregado",
+    "comentario": ".",
+    "fecha_moviminto": "2025-08-24T21:31:13.862Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 16,
+  "fields": {
+    "pedido": 8,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:36:25.979Z"
+  }
+},
+{
+  "model": "core.movimientopedido",
+  "pk": 17,
+  "fields": {
+    "pedido": 9,
+    "usuario": null,
+    "estado": "registrado",
+    "comentario": "Pedido creado",
+    "fecha_moviminto": "2025-08-24T21:49:19.194Z"
+  }
+}
+]
