@@ -229,6 +229,9 @@ Database	5432 → 5432	PostgreSQL
 
 [Admin Django](http://localhost:8000/admin)
 
+[API REST](http://localhost:8000/swagger/)
+
+
 Postgres: localhost:5432
 
 ## Demo Credentials
