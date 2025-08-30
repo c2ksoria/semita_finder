@@ -3,6 +3,8 @@
 Semita Finder is a **web platform** that connects local businesses with nearby customers.
 It allows users to discover businesses around them, place orders, and track their status, while businesses can manage their products and received orders.
 
+<img width="1292" height="639" alt="image" src="https://github.com/user-attachments/assets/24b8b5f6-32db-4756-ad98-fc5b0024fc8a" />
+
 ## 🌱 Project Origin
 
 Semita Finder was born in ***San Juan, Argentina***, with the goal of making it easier to find and buy "semitas", a traditional local baked good deeply rooted in the region’s culture.
