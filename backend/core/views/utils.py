@@ -1,9 +1,10 @@
 # core/views/choices_views.py
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from core.utils.constants import ESTADOS_PEDIDO
 from core.serializers.utils import ChoiceSerializer
+from core.utils.constants import ESTADOS_PEDIDO
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 class EstadoPedidoChoicesAPIView(APIView):
     def get(self, request):
