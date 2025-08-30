@@ -1,14 +1,17 @@
 from django.urls import path
 
-from core.views.comercio import (ComercioCercanoAPIView,
-                                 ComercioDetallePublicoAPIView,
-                                 ComercioImagenDeleteAPIView,
-                                 ComercioImagenListAPIView,
-                                 ComercioImagenUploadAPIView,
-                                 ComercioListaAPIView, FranjaHorarioAPIView,
-                                 HorariosComerciosAPIView,
-                                 MisComercioDetalleAPIView,
-                                 MisComerciosAPIView)
+from core.views.comercio import (
+    ComercioCercanoAPIView,
+    ComercioDetallePublicoAPIView,
+    ComercioImagenDeleteAPIView,
+    ComercioImagenListAPIView,
+    ComercioImagenUploadAPIView,
+    ComercioListaAPIView,
+    FranjaHorarioAPIView,
+    HorariosComerciosAPIView,
+    MisComercioDetalleAPIView,
+    MisComerciosAPIView,
+)
 
 urlpatterns = [
     path("", ComercioListaAPIView.as_view(), name="comercio"),
