@@ -14,41 +14,45 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.urls import include, path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Snippets API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
-   authentication_classes=[],
+    openapi.Info(
+        title="Snippets API",
+        default_version="v1",
+        description="Test description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@snippets.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+    authentication_classes=[],
 )
 swagger_security_definitions = {
     "TokenAuth": {
         "type": "apiKey",
         "name": "Authorization",
         "in": "header",
-        "description": 'Usar: Token <tu_token>'
+        "description": "Usar: Token <tu_token>",
     }
 }
 
 
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('core.urls.auth_urls')),
-    path('comercio/', include('core.urls.comercio_urls')),
-    path('producto/', include('core.urls.producto_urls')),
-    path('pedido/', include('core.urls.pedido_urls')),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')
+    path("admin/", admin.site.urls),
+    path("auth/", include("core.urls.auth_urls")),
+    path("comercio/", include("core.urls.comercio_urls")),
+    path("producto/", include("core.urls.producto_urls")),
+    path("pedido/", include("core.urls.pedido_urls")),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
 ]
