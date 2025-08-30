@@ -18,9 +18,10 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     command: >
-      sh -c "poetry run python manage.py migrate &&
-         poetry run python manage.py loaddata core/fixtures/demo_data.json &&
-         poetry run python manage.py runserver 0.0.0.0:8000"
+      sh -c "poetry run python manage.py makemigrations core &&
+        poetry run python manage.py migrate &&
+        poetry run python manage.py loaddata core/fixtures/demo_data.json &&
+        poetry run python manage.py runserver 0.0.0.0:8000"
 
     env_file:
       - .env
